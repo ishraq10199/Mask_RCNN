@@ -22,7 +22,8 @@ config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
 sess = tf.Session(config=config)
 
-ROOT_DIR = '../../Mask_RCNN'
+ROOT_DIR = os.path.abspath('../..')
+print("[DEBUG]", ROOT_DIR)
 assert os.path.exists(
     ROOT_DIR), 'ROOT_DIR does not exist. Did you forget to read the instructions above? ;)'
 
@@ -80,7 +81,7 @@ class InferenceConfig(TargetConfig):
 
 
 inference_config = InferenceConfig()
-MODEL_DIR = os.path.join(os.path.abspath(".."), "samples", "logs")
+MODEL_DIR = os.path.join(os.path.abspath(".."), "logs")
 # Recreate the model in inference mode
 model = modellib.MaskRCNN(mode="inference",
                           config=inference_config,
